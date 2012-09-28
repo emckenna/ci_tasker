@@ -32,9 +32,9 @@ This application should have a test suite of your choice, (i.e. testing framewor
 ### Rules
 
 * Tasks may never be conflicting
-** A task is conflicting if it shares a time slot with a different task on a users task list
+    * A task is conflicting if it shares a time slot with a different task on a users task list
 * A user may only act upon his own items
-** User cannot create/edit/delete for a different user
+    * User cannot create/edit/delete for a different user
 * A connection is when a user was invited or has invited someone for a task
 * If a shared task is deleted from the creator's calendar, it should be removed from all users
 * If a shared task is deleted from the invitees calendar, it should constitute a rejection response
@@ -48,7 +48,7 @@ This application should have a test suite of your choice, (i.e. testing framewor
 * Start Time/Date
 * End Time/Date
 * Recurrence
-** Daily, Weekly, Monthly, One time
+    * Daily, Weekly, Monthly, One time
 * Description
 * Invitees (other users)
 * Attendees (users that accepted the task in their calendar)
