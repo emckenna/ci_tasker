@@ -57,4 +57,16 @@ This application should have a test suite of your choice, (i.e. testing framewor
 
 * First Name
 * Last Name
+
+
+# Plan
+
+* set up users
+* assume no auth
+* simple editing of users
+* create task model
+* task CRUD
+* invites
+* rules
+* stats
 ￼
