@@ -1,3 +1,20 @@
+
+# Plan
+
+* set up users
+* assume no auth
+* simple editing of users
+* create task model
+* task CRUD
+* invites
+* rules
+* stats
+
+
+## Notes
+ * DB and vhost config information are under the setup directory.
+ * .htaccess added for cleaner URL.
+
 # Scheduling Application
 
 Design and implement a scheduling application given a multiuser environment. Each user has their own task list and can do the following actions.
@@ -58,15 +75,3 @@ This application should have a test suite of your choice, (i.e. testing framewor
 * First Name
 * Last Name
 
-
-# Plan
-
-* set up users
-* assume no auth
-* simple editing of users
-* create task model
-* task CRUD
-* invites
-* rules
-* stats
-￼
