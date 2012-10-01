@@ -10,6 +10,8 @@
 * rules
 * stats
 
+## Assumptions
+ * tasks are in hour increments.
 
 ## Notes
  * DB and vhost config information are under the setup directory.
