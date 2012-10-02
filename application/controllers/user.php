@@ -14,7 +14,8 @@ class User extends My_Controller {
 			$tasks = $this->Task_model->get_tasks_by_user($uid);
 			//print_r($tasks);
 			foreach ($tasks as $task) {
-				$edit = anchor('#', 'Edit');
+				// TODO: should constrain edit to only task creators
+				$edit = anchor("user/$uid/editTask/$task->tid", 'Edit');
 				$del = anchor("user/$uid/deleteTask/$task->tid", 'Delete');
 				$table_data[] = array($task->start, $task->end, $task->description, "$edit | $del");
 			}

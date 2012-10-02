@@ -12,6 +12,22 @@ class Task_model extends CI_Model {
 		parent::__contruct();
 	}
 
+	/**
+	 * load task data for use on forms and views
+	 * @param  int $tid task id
+	 * @return Task_model      Task model object
+	 */
+	function load_task($tid) {
+		$q = $this->db->query("SELECT * FROM task WHERE tid = ?", array($tid));
+
+		if (empty($q)) {
+			return FALSE;
+		}
+
+		return $q->row(0, 'Task_model');
+
+	}
+
 	function add_task($uid) {
 		$this->start = $this->getDateInput();
 		$this->end = $this->getDateInput(FALSE);
@@ -31,8 +47,17 @@ class Task_model extends CI_Model {
 	 * @param  int $tid the task id
 	 * @return [type]      [description]
 	 */
-	function edit_task($tid) {
+	function update_task($tid) {
+		$this->start = $this->getDateInput();
+		$this->end = $this->getDateInput(FALSE);
+		$this->creator_uid = $this->input->post('creator_uid');
+		$this->description = $this->input->post('description');
+		$this->recurrence = $this->input->post('recurrence');
+		$this->tid = $this->input->post('tid');
 
+		// How are recurring tasks affected?
+		$this->db->where('tid', $tid);
+		$this->db->update('task', $this);
 	}
 
 	/**
