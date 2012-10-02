@@ -1,4 +1,3 @@
-
 # Plan
 
 * set up users
@@ -17,6 +16,8 @@
 ## Notes
  * DB and vhost config information are under the setup directory.
  * .htaccess added for cleaner URL.
+ * should of made more assumptions or reduced scope to deliver more value.
+ * spent too much time on UI, should of used time for functionality.
 
 # Scheduling Application
 
