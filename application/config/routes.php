@@ -42,6 +42,11 @@ $route['default_controller'] = "user";
 $route['404_override'] = '';
 
 $route['user/(:num)']   = "user/index/$1";
+$route['user/(:num)/addTask'] = "task/add/$1";
+$route['user/(:num)/deleteTask/(:num)'] = "task/delete/$1/$2";
+$route['user/(:num)/editTask/(:num)'] = "task/edit/$1/$2";
+
+$route['task/add'] = "user";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

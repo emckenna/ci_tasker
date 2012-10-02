@@ -15,6 +15,7 @@ CREATE TABLE `user` (
 --
 CREATE TABLE `task` (
   `tid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `creator_uid` int(10) unsigned NOT NULL,
   `start` datetime NOT NULL,
   `end` datetime NOT NULL,
   `description` varchar(255) DEFAULT NULL,

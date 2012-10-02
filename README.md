@@ -12,6 +12,7 @@
 
 ## Assumptions
  * tasks are in hour increments.
+ * only add tasks up until the new year, i.e. a new daily task would create task for each day up until 12/31 of the current year.
 
 ## Notes
  * DB and vhost config information are under the setup directory.

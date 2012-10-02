@@ -12,6 +12,16 @@ class User_model extends CI_Model {
 		parent::__contruct();
 	}
 
+	function view($uid) {
+		$q = $this->db->query("SELECT * FROM user WHERE uid = ?", array($uid));
+
+		if (empty($q)) {
+			return FALSE;
+		}
+
+		return $q->row(0, 'User_model');
+	}
+
 	/*
 	 * add user to db
 	 */
@@ -22,6 +32,10 @@ class User_model extends CI_Model {
 		$this->uid = $this->db->insert_id();
 	}
 
+	/**
+	 * list all users
+	 * @return array all users by lastname, first
+	 */
 	function list_users() {
 		$q = $this->db->query("SELECT * FROM user ORDER BY lastname, firstname");
 
@@ -30,5 +44,13 @@ class User_model extends CI_Model {
 			$users[] = $item;
 		}
 		return $users;
+	}
+
+	/**
+	 * helper for display full name
+	 * @return string - the full name
+	 */
+	function getName() {
+		return $this->firstname ." ". $this->lastname;
 	}
 }

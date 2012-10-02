@@ -1,12 +1,28 @@
 <?php
 class User extends My_Controller {
 	public function index($uid = NULL) {
-		if (isset($uid)) {
-			echo 'uid is set';
+		$this->load->helper('html');
+		$this->load->model('User_model');
+		$this->load->model('Task_model');
+		$this->load->library('table');
+
+		$data['user'] = $this->User_model->view($uid);
+		$table_data = array(array('start', 'end', 'description', ''));
+
+		if ($data['user']) {
+
+			$tasks = $this->Task_model->get_tasks_by_user($uid);
+			//print_r($tasks);
+			foreach ($tasks as $task) {
+				$edit = anchor('#', 'Edit');
+				$del = anchor("user/$uid/deleteTask/$task->tid", 'Delete');
+				$table_data[] = array($task->start, $task->end, $task->description, "$edit | $del");
+			}
+
+			$data['task_table_data'] = $table_data;
 			$this->wrap_content('tasker_user_profile', $data);
-		}else {
-			$this->load->helper('html');
-			$this->load->model('User_model');
+		}
+		else {
 			$users = $this->User_model->list_users();
 
 			foreach ($users as $user) {
@@ -17,9 +33,6 @@ class User extends My_Controller {
 
 			$this->wrap_content('tasker_user', $data);
 		}
-
-
-
 	}
 
 	public function add() {
@@ -38,7 +51,8 @@ class User extends My_Controller {
 	        }
 			$this->wrap_content('tasker_user_add', $form_opts);
 
-		}else {
+		}
+		else {
 			$this->User_model->add_user();
 			//$this->wrap_content('tasker_user');
 			redirect('user');
