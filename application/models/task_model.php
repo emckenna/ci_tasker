@@ -35,18 +35,27 @@ class Task_model extends CI_Model {
 
 	}
 
-	// hmm
-	// difference between creator delete vs invite delete
-	function delete_task($tid) {
-		$this->db->delete('task', array('tid' => $tid));
-		$this->db->delete('attendence', array('tid' => $tid));
+	/**
+	 * delete a task.  remove task and all attendence if deleted by creator,
+	 * otherwise only delete attendence for user
+	 * @param  int $uid user id
+	 * @param  int $tid task id
+	 */
+	function delete_task($uid, $tid) {
+		$result = array();
+		if ($this->is_user_creator($uid, $tid)) {
+			$result[] = $this->db->delete('task', array('tid' => $tid));
+			$result[] = $this->db->delete('attendence', array('tid' => $tid));
+		}
+		else {
+			$result[] = $this->db->delete('attendence', array('uid' => $uid, 'tid' => $tid));
+		}
+		return $result;
 	}
 
 	function get_todays_tasks_by_user($uid) {
 		$start_today = timestamp_to_mysqldatetime(mktime(0, 0, 0, date("m")  , date("d"), date("Y")));
 		$end_today = timestamp_to_mysqldatetime(mktime(11, 59, 59, date("m")  , date("d"), date("Y")));
-
-
 	}
 
 	function get_tasks_by_user($uid) {
@@ -67,6 +76,12 @@ class Task_model extends CI_Model {
 	function add_user_attendance($tid, $uid) {
 		$sql = 'INSERT INTO attendence (tid, uid) VALUES (?, ?)';
 		$this->db->query($sql, array($tid, $uid));
+	}
+
+	function is_user_creator($uid, $tid){
+		$sql = "SELECT 1 FROM task WHERE creator_uid = ? AND tid = ?";
+		$query = $this->db->query($sql, array($uid, $tid));
+		return $query->num_rows() > 0;
 	}
 
 	/**

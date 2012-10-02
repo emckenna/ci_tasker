@@ -35,12 +35,21 @@ class Task extends MY_Controller {
 
 	}
 
+	function edit($uid, $tid) {
+
+	}
+
+	/**
+	 * callback for deleting tasks
+	 * @param  int $uid user id
+	 * @param  int $tid task id
+	 * @return none redirect to user profile.
+	 */
 	function delete($uid, $tid) {
-		// if uid matches creator
-		// 	delete attendence by $tid and task
-		// else 
-		// 	delete only attendence for $uid
-		//echo 'delete';
+		$this->load->model('Task_model');
+		$result = $this->Task_model->delete_task($uid, $tid);
 		redirect("user/$uid");
 	}
+
+
 }
