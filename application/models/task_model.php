@@ -87,7 +87,7 @@ class Task_model extends CI_Model {
 		$start_today = timestamp_to_mysqldatetime(mktime(0, 0, 0, date("m")  , date("d"), date("Y")));
 
 		$sql = "SELECT t.* FROM task t JOIN attendence a ON a.tid = t.tid WHERE a.uid = ?";
-		$sql .= " AND t.end >= '$start_today'";
+		$sql .= " AND t.end >= '$start_today' ORDER by t.start ASC";
 		$query = $this->db->query($sql, array($uid));
 
 		$tasks = array();

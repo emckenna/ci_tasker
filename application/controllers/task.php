@@ -85,14 +85,18 @@ class Task extends MY_Controller {
 		redirect("user/$uid");
 	}
 
+	function show_all_tasks() {
+		$this->wrap_content('tasker_all_tasks', $data);
+	}
+
 	function load_default_values(&$data, $uid, $tid = NULL) {
 		date_default_timezone_set('America/New_York'); 
 		$data['action'] 		= "Adding";
 		$data['description']	= '';
 		$data['start_date']		= date('m/d/Y');
-		$data['start_time']		= date("g") ." ". date('A');
+		$data['start_time']		= date("g A", strtotime("+1 hour"));
 		$data['end_date']		= date('m/d/Y');
-		$data['end_time']		= date("g") ." ". date('A');
+		$data['end_time']		= date("g A", strtotime("+2 hour"));
 		$data['recurrence']		= 0;
 
 

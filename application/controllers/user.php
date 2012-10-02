@@ -17,7 +17,7 @@ class User extends My_Controller {
 				// TODO: should constrain edit to only task creators
 				$edit = anchor("user/$uid/editTask/$task->tid", 'Edit');
 				$del = anchor("user/$uid/deleteTask/$task->tid", 'Delete');
-				$table_data[] = array($task->start, $task->end, $task->description, "$edit | $del");
+				$table_data[] = array($task->start, $task->end, substr($task->description, 0, 50) , "$edit | $del");
 			}
 
 			$data['task_table_data'] = $table_data;

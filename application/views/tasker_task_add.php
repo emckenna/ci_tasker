@@ -6,7 +6,7 @@
 
 			echo form_open($form_action, array('class' => 'form-horizontal'));
 			echo form_hidden('creator_uid', $uid);
-			if ($tid) {
+			if (isset($tid)) {
 				echo form_hidden('tid', $tid);
 			}
 		?>
